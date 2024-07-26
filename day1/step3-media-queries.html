@@ -17,8 +17,18 @@
     -->
     <link media="print" rel="stylesheet" href="style/print.css">
     <link media="screen" rel="stylesheet" href="style/screen.css">
+    <link media="screen and (orientation : landscape)" rel="stylesheet" href="style/landscape.css">
+    <link media="screen and (orientation : portrait)" rel="stylesheet" href="style/portrait.css">
+    <link media="screen and (max-width : 1000px)" rel="stylesheet" href="style/1000.css">
+    <link media="screen and (max-width : 600px)" rel="stylesheet" href="style/600.css">
+    <script>
+        window.addEventListener("resize", function(){
+            document.getElementsByTagName("h2")[0].textContent = "Max width is | "+window.innerWidth+"px"
+        })
+    </script>
 </head>
 <body>
+    <h2></h2>
     <div class="container">
         <div class="box1">1</div>
         <div class="box2">2</div>
