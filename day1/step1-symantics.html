@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function init(){
+            document.getElementsByTagName("h1")[0].textContent = "Selected";
+        }
+       // window.addEventListener("load", init);
+       document.addEventListener("DOMContentLoaded", init);
+    </script>
+</head>
+<!-- <body onload="init()"> -->
+<body>
+    <!-- how will i select this h1 tag by javascript ? -->
+    <h1>welcome to your life</h1>
+   <!--  <script>
+        init();
+    </script> -->
+</body>
+</html>
+
+<!-- 
+create 3 functions 
+name them fun1, fun2 and fun3
+call fun1 on body onload
+call fun2 on window.addEventListener("load")
+call fun3 on document.addEventListener("DOMContentLoaded")
+
+and findout which one is called first
+-->
