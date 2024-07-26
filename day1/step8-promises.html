@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // console.log(Promise.resolve("promise is resolved"));
+        // console.log(Promise.reject("promise is rejected"));
+        /*
+        Promise.resolve("promise is resolved")
+        .then(function(res){
+            console.log("Resolve message ", res)
+        })
+        .catch(function(err){
+            console.log("Error message ", err)
+        })
+        .finally(function(){
+            console.log("Promise.resolve","Promise is now settled")
+        });
+        
+        Promise.reject("promise is rejected")
+        .then(function(res){
+            console.log("Resolve message ", res)
+        })
+        .catch(function(err){
+            console.log("Error message ", err)
+        })
+        .finally(function(){
+            console.log("Promise.reject","Promise is now settled")
+        });
+        */
+        let taskdone = false;
+        let promise = new Promise(function(resolve, reject){
+            setTimeout(function(){
+                if(taskdone){
+                    resolve("Resolve Data")
+                }else{
+                    reject("Reject Reason")
+                }
+            },2000);
+        });
+
+        promise
+        .then(function(res){
+            console.log("Result is ", res)
+        })
+        .catch(function(err){
+            console.log("Error is ", err)
+        })
+        .finally(function(){
+            console.log("Promise is complete")
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
