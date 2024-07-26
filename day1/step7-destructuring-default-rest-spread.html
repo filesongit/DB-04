@@ -40,6 +40,7 @@
              */
             // var { title, power, firstname, lastname } = hero;
             
+        // spread syntax
             /* var temphero = { ...hero };
             console.log(hero.title);
             console.log(temphero.title);
@@ -57,22 +58,27 @@
         // console.log(adder(5,null));// ???
         console.log(adder(5));// ??? 
         */
-        /* function adder(){
+        /* 
+        function adder(){
             // return arguments.length;
             let total = 0;
             for(let i = 0; i < arguments.length; i++){
                 total+=arguments[i];
             };
             return total;
-        }; */
+        }; 
+        */
         // Rest Parameters
-        /* function adder(...nums){
+        /* 
+        function adder(...nums){
             let total = 0;
             for(let i = 0; i < nums.length; i++){
                 total+=nums[i];
             };
             return total;
-        }; */
+        }; 
+        */
+       // REST Arguments
         function adder(...nums){
             return nums.reduce(function(inival,val,idx,arr){
                 return inival + val;
@@ -83,8 +89,10 @@
         console.log(adder(5,6,7));
         console.log(adder(5,6,7,8));
         console.log(adder(5,6,7,8,9));
-        console.log(adder(5,6,7,8,9,10));
 
+        let favnums = [5,6,7,8,9,10];
+        // Spread Syntax
+        console.log(adder(...favnums));
     </script>
 </head>
 <body>

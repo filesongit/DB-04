@@ -30,7 +30,7 @@
             console.log("Promise.reject","Promise is now settled")
         });
         */
-        let taskdone = false;
+        let taskdone = true;
         let promise = new Promise(function(resolve, reject){
             setTimeout(function(){
                 if(taskdone){
@@ -40,7 +40,7 @@
                 }
             },2000);
         });
-
+        /*
         promise
         .then(function(res){
             console.log("Result is ", res)
@@ -51,9 +51,36 @@
         .finally(function(){
             console.log("Promise is complete")
         })
+        */
+
+        /* 
+        promise
+        .then(
+            function(res){
+                console.log("Result is ", res)
+            },
+            function(err){
+                console.log("Error is ", err)
+            }
+        ) 
+        */
+        promise
+        .then( function(res){
+           document.getElementById("first").textContent += res;
+           return res.toUpperCase();
+        }) 
+        .then( function(res){
+            document.getElementById("second").textContent += res;
+            return res.toLowerCase();;
+        }) 
+        .then( function(res){
+           document.getElementById("third").textContent += res;
+        }) 
     </script>
 </head>
 <body>
-    
+    <h2 id="first">1 : </h2>
+    <h2 id="second">2 : </h2>
+    <h2 id="third">3 : </h2>
 </body>
 </html>
