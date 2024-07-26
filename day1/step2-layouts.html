@@ -29,22 +29,16 @@
     </style> -->
     <style>
         .container{
-            width: 1200px;
             height: 600px;
             background-color: darkslategray;
             border: 1px solid transparent;
             margin: auto;
-  /*           position: relative; */
-        }
-        .container .box{
-            width: 100px;
-            height: 100px;
-            background-color: darkgoldenrod;
-            text-align: center;
-            font-size: 36px;
-            font-family: sans-serif;
-            color: papayawhip;
-            line-height: 100px;
+            display: flex;
+            /* flex-direction: row | row-reverse | column | column-reverse; */
+            /* flex-wrap: wrap-reverse; */
+            /* position: relative; */
+            justify-content: space-evenly;
+            align-items: center;
         }
         /* 
         static
@@ -74,36 +68,58 @@
           float : left;  
         } 
         */
-        .box.box1{
+        div[class ^= "box"]{
+            /*  */
+            /* flex-basis: 150px; */
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            font-size: 36px;
+            font-family: sans-serif;
+            color: papayawhip;
+            line-height: 100px;
+            flex-shrink: 0;
+            /* align-self: flex-end; */ /* horizontal alignment */
+        }
+        .box1{
             background-color: #001219;
         }
-        .box.box2{
+        .box2{
             background-color: #005F73;
+           /*  order : 2; */
         }
-        .box.box3{
+        .box3{
             background-color: #0A9396;
+            /* order : 2; */
+           /*  flex-grow: 1; */
         }
-        .box.box4{
+        .box4{
             background-color: #94D2BD;
+           /*  flex-shrink: 2; */
         }
-        .box.box5{
+        .box5{
             background-color: #E9D8A6;
+            /* flex-shrink: 0; */
         }
-        .box.box6{
+        .box6{
             background-color: #EE9B00;
+           /*  order : 1; */
         }
-        .box.box7{
+        .box7{
             background-color: #CA6702;
+            /*  flex-grow: 2; */
+           /*  order : -1; */
         }
-        .box.box8{
+        .box8{
             background-color: #BB3E03;
         }
-        .box.box9{
+        .box9{
             background-color: #AE2012;
         }
-        .box.box10{
+        .box10{
             background-color: #9B2226;
         }
+       
     </style>
 </head>
 <body>
@@ -113,16 +129,16 @@
         </div>
     </div> -->
     <div class="container">
-        <div class="box box1">1</div>
-        <div class="box box2">2</div>
-        <div class="box box3">3</div>
-        <div class="box box4">4</div>
-        <div class="box box5">5</div>
-        <div class="box box6">6</div>
-        <div class="box box7">7</div>
-        <div class="box box8">8</div>
-        <div class="box box9">9</div>
-        <div class="box box10">10</div>
+        <div class="box1">1</div>
+        <div class="box2">2</div>
+        <div class="box3">3</div>
+        <div class="box4">4</div>
+        <div class="box5">5</div>
+        <div class="box6">6</div>
+        <div class="box7">7</div>
+        <div class="box8">8</div>
+        <div class="box9">9</div>
+        <div class="box10">10</div>
     </div>
 </body>
 </html>
