@@ -7,7 +7,8 @@
     <style>
          .container{
             height: 600px;
-            width: 900px;
+            width: 1020px;
+            overflow: auto;
             background-color: darkslategray;
             border: 1px solid transparent;
             margin: auto;
@@ -23,15 +24,61 @@
             font-size: 36px;
             font-family: sans-serif;
             color: papayawhip;
-            background-color: darkorange;
             line-height: 100px;
             flex-shrink: 0;
             margin: 10px;
         }
+        .box:hover{
+            cursor: pointer;
+            box-shadow: 5px 5px 10px black;
+        }
+        button{
+            width: 150px;
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+        }
     </style>
+    <script>
+        function boxClickHandler(evt){
+            if(evt.target.getAttribute("class") !== "container"){
+                document.getElementsByClassName("container")[0].removeChild(evt.target);
+            }
+        }
+        function addbox(){
+            let r = Math.round(Math.random() * 255);
+            let g = Math.round(Math.random() * 255);
+            let b = Math.round(Math.random() * 255);
+            let box = document.createElement("div");
+                box.setAttribute("class","box box1");
+                box.setAttribute("style", "background-color: rgb("+r+","+g+","+b+")");
+                box.innerText = 'box';
+            document.getElementsByClassName("container")[0].appendChild(box);
+        };
+        function removeFirstbox(){
+           let box = document.getElementsByClassName("container")[0].firstChild;
+           if(box){
+               document.getElementsByClassName("container")[0].removeChild(box);
+            }
+        };
+        function removeLastbox(){
+           let box = document.getElementsByClassName("container")[0].lastChild;
+           if(box){
+               document.getElementsByClassName("container")[0].removeChild(box);
+            }
+        };
+        document.addEventListener("DOMContentLoaded", function(){
+           document.getElementsByTagName("button")[0].addEventListener("click", addbox);
+           document.getElementsByTagName("button")[1].addEventListener("click", removeFirstbox);
+           document.getElementsByTagName("button")[2].addEventListener("click", removeLastbox);
+           document.getElementsByClassName("container")[0].addEventListener("click", boxClickHandler);
+        });
+    </script>
 </head>
 <body>
     <button>Add Box</button>
+    <button>Remove Box from Top</button>
+    <button>Remove Box from Bottom</button>
     <div class="container"></div>
 </body>
 </html>
