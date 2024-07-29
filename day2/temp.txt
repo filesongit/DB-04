@@ -1,4 +1,5 @@
 import { Component } from "react";
+import "./assets/formstyle.css";
 
 class App extends Component{
     state = {
@@ -6,6 +7,11 @@ class App extends Component{
             firstname : "",
             lastname : "",
             age : 0
+        },
+        showerrors : {
+            firstname_error : "",
+            lastname_error : "",
+            age_error : ""
         }
     }
     render(){
@@ -15,21 +21,19 @@ class App extends Component{
                     <div className="mb-3">
                         <label htmlFor="firstname" className="form-label">First Name</label>
                         <input onChange={ this.userInfoHandler } value={this.state.userinfo.firstname} className="form-control" id="firstname"/>
-                        <div className="form-text">Enter your First Name</div>
+                        { this.state.showerrors.firstname_error != "" && <div className="form-text">{ this.state.showerrors.firstname_error }</div> }
                     </div>
                     <div className="mb-3">
                         <label htmlFor="lastname" className="form-label">Last Name</label>
                         <input onChange={ this.userInfoHandler } value={this.state.userinfo.lastname} className="form-control" id="lastname"/>
-                        <div className="form-text">Enter your Last Name</div>
+                        { this.state.showerrors.lastname_error != "" && <div className="form-text">{ this.state.showerrors.lastname_error }</div>}
                     </div>
                     <div className="mb-3">
                         <label htmlFor="age" className="form-label">Age</label>
                         <input onChange={ this.userInfoHandler } value={this.state.userinfo.age} type="number" className="form-control" id="age"/>
-                        <div className="form-text">Enter your Age</div>
-                        <div className="form-text">You are too young to join us</div>
-                        <div className="form-text">You are too old to join us</div>
+                        {this.state.showerrors.firstname_error != "" && <div className="form-text">{ this.state.showerrors.age_error }</div>}
                     </div>
-                    <button className="btn btn-primary">Register</button>
+                    <button onClick={ this.setValidations } className="btn btn-primary">Register</button>
                     <hr />
                     <ul>
                         <li>First Name { this.state.userinfo.firstname }</li>
@@ -74,6 +78,19 @@ class App extends Component{
                 [event.target.id] : event.target.value
                 }
             })
+    }
+
+    setValidations = () => {
+        //set error for first name
+        this.setState(
+            {...this.state, 
+                showerrors : {
+                ...this.state.showerrors,
+                firstname_error : "you must fill your first name",
+                lastname_error : "you must fill your last name",
+                age_error : "you are too young to join us"
+                }
+            });
     }
 }
 
