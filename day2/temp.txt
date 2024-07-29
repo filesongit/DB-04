@@ -3,8 +3,8 @@ import { Component } from "react";
 class App extends Component{
     state = {
         userinfo : {
-            firstname : "default first name",
-            lastname : "default last name",
+            firstname : "",
+            lastname : "",
             age : 0
         }
     }
@@ -13,18 +13,18 @@ class App extends Component{
                     <h2>User Registeration App</h2>
                     <hr />
                     <div className="mb-3">
-                        <label htmlFor="ufname" className="form-label">First Name</label>
-                        <input onChange={(event) => this.setState({...this.state, userinfo : {...this.state.userinfo,firstname : event.target.value}})} value={this.state.userinfo.firstname} className="form-control" id="ufname"/>
+                        <label htmlFor="firstname" className="form-label">First Name</label>
+                        <input onChange={ this.userInfoHandler } value={this.state.userinfo.firstname} className="form-control" id="firstname"/>
                         <div className="form-text">Enter your First Name</div>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="ulname" className="form-label">Last Name</label>
-                        <input onChange={(event) => this.setState({...this.state,  userinfo : {...this.state.userinfo,lastname : event.target.value}})} value={this.state.userinfo.lastname} className="form-control" id="ulname"/>
+                        <label htmlFor="lastname" className="form-label">Last Name</label>
+                        <input onChange={ this.userInfoHandler } value={this.state.userinfo.lastname} className="form-control" id="lastname"/>
                         <div className="form-text">Enter your Last Name</div>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="uage" className="form-label">Age</label>
-                        <input onChange={(event) => this.setState({...this.state,  userinfo : {...this.state.userinfo,age : event.target.value}})} value={this.state.userinfo.age} type="number" className="form-control" id="uage"/>
+                        <label htmlFor="age" className="form-label">Age</label>
+                        <input onChange={ this.userInfoHandler } value={this.state.userinfo.age} type="number" className="form-control" id="age"/>
                         <div className="form-text">Enter your Age</div>
                         <div className="form-text">You are too young to join us</div>
                         <div className="form-text">You are too old to join us</div>
@@ -37,6 +37,43 @@ class App extends Component{
                         <li>Age { this.state.userinfo.age }</li>
                     </ul>
                </div>
+    }
+    /* firstnameHandler = (event) => {
+        this.setState(
+            {...this.state, 
+                userinfo : {
+                ...this.state.userinfo,
+                firstname : event.target.value
+                }
+            })
+        }
+    lastnameHandler = (event) => {
+        this.setState(
+            {...this.state, 
+                userinfo : {
+                ...this.state.userinfo,
+                lastname : event.target.value
+                }
+            })
+
+    }
+    ageHandler = (event) => {
+        this.setState(
+            {...this.state, 
+                userinfo : {
+                ...this.state.userinfo,
+                age : event.target.value
+                }
+            })
+    } */
+    userInfoHandler = (event) => {
+        this.setState(
+            {...this.state, 
+                userinfo : {
+                ...this.state.userinfo,
+                [event.target.id] : event.target.value
+                }
+            })
     }
 }
 
