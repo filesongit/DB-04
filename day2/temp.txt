@@ -1,43 +1,37 @@
-import React, { Component } from "react";
+import { Component } from "react";
 
 class App extends Component{
     state = {
-        power : 0
-    };
-    // ipref = React.createRef();
-    /* 
-    // step 2 
-    constructor(){
-        super();
-        this.addPower = this.addPower.bind(this);
-    } 
-    */
-   // step 3
-    addPower = () => {
-        this.setState({ power : this.state.power + 1 })
-    }
-   // step 4
-    setPower = (event) => {
-        this.setState({ power : Number(event.target.value) })
+        userinfo : {
+            firstname : "",
+            lastname : "",
+            age : 0
+        }
     }
     render(){
-        return <div>
-                    <h1>Hero's Power is { this.state.power }</h1>
-                    {/* step 1 */}
-                    {/* <button onClick={ this.addPower.bind(this) } >Add Power</button>*/}
-                     <br />
-                    <button onClick={ this.addPower } >Add Power</button>
-                    <br />
-                    <button onClick={ this.addPower } >Add Power</button>
-                    <br />
-                    <button onClick={ this.addPower } >Add Power</button>
-                    <br />
-                    <button onClick={ this.addPower } >Add Power</button>
-                    <br />
-                    <input onChange={(evt) => this.setPower(evt) } type="range" />
-               </div> 
+        return <div className="container">
+                    <h2>User Registeration App</h2>
+                    <hr />
+                    <div className="mb-3">
+                        <label htmlFor="ufname" className="form-label">First Name</label>
+                        <input className="form-control" id="ufname"/>
+                        <div className="form-text">Enter your First Name</div>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="ulname" className="form-label">Last Name</label>
+                        <input className="form-control" id="ulname"/>
+                        <div className="form-text">Enter your Last Name</div>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="uage" className="form-label">Age</label>
+                        <input type="number" className="form-control" id="uage"/>
+                        <div className="form-text">Enter your Age</div>
+                        <div className="form-text">You are too young to join us</div>
+                        <div className="form-text">You are too old to join us</div>
+                    </div>
+                    <button className="btn btn-primary">Register</button>
+               </div>
     }
-    
- }
+}
 
- export default App;
+export default App;
