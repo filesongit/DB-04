@@ -4,19 +4,26 @@ class App extends Component{
     state = {
         power : 0
     };
-    ipref = React.createRef();
+    // ipref = React.createRef();
     /* 
+    // step 2 
     constructor(){
         super();
         this.addPower = this.addPower.bind(this);
     } 
     */
+   // step 3
     addPower = () => {
         this.setState({ power : this.state.power + 1 })
+    }
+   // step 4
+    setPower = (event) => {
+        this.setState({ power : Number(event.target.value) })
     }
     render(){
         return <div>
                     <h1>Hero's Power is { this.state.power }</h1>
+                    {/* step 1 */}
                     {/* <button onClick={ this.addPower.bind(this) } >Add Power</button>*/}
                      <br />
                     <button onClick={ this.addPower } >Add Power</button>
@@ -27,7 +34,7 @@ class App extends Component{
                     <br />
                     <button onClick={ this.addPower } >Add Power</button>
                     <br />
-                    <input type="range" />
+                    <input onChange={(evt) => this.setPower(evt) } type="range" />
                </div> 
     }
     
