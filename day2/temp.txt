@@ -8,10 +8,14 @@ app.jsx
 
 import { Component } from "react";
 import ChildComp from "./components/childcomp";
+import axios from "axios";
+
 
 class App extends Component{
     state = {
-        show : true
+        show : true,
+        version : 0,
+        users : []
     }
     constructor(){
         super();
@@ -20,18 +24,25 @@ class App extends Component{
     render(){
         console.log("App Component's render was called")
         return <div className="container">
-                    <h2>Class Component Lifecycle</h2>
+                    <h2>Class Component Lifecycle | { this.state.version }</h2>
                     <label htmlFor="showhide">Show / Hide</label>
                     <input checked={this.state.show} onChange={() => this.setState({ show : !this.state.show })} type="checkbox" id="showhide" />
+                    <br />
+                    <button className="btn btn-primary" onClick={() => this.setState({ version : Math.round(Math.random() * 1000 ) })}>Change Version</button>
                     <hr />
-                    {this.state.show ? <ChildComp/> : "child component is unmounted"}
+                    {this.state.show ? <ChildComp data={ this.state.users } version={this.state.version}/> : "child component is unmounted"}
                </div>
     }
     componentDidMount(){
-        console.log("App Component's componentDidMount was called")
+        console.log("App Component's componentDidMount was called");
+        axios.get("https://reqres.in/api/users?page=1")
+        .then( res => this.setState({ users : res.data.data }))
+        .catch( error => console.log("Error ", error ))
     }
 
 }
+
+export default App;
 
 export default App;
 
@@ -41,6 +52,8 @@ export default App;
 childcomp.jsx
 -------------
 
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/prop-types */
 import { Component } from "react";
 
 class ChildComp extends Component{
@@ -52,7 +65,29 @@ class ChildComp extends Component{
         console.log("ChildComp's render was called")
         return <div className="container">
                     <h3>Child Component</h3>
-               </div>
+                    <h4>Parent's version {this.props.version }</h4>
+                    <table className="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sl #</th>
+                                <th>Photo</th>
+                                <th>Full Name</th>
+                                <th>eMail</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { this.props.data.map((val) => <tr key={val.id}> 
+                                <td>{val.id}</td> 
+                                <td>
+                                    <img src={val.avatar} alt={val.first_name+" "+val.last_name} />
+                                </td> 
+                                <td>{val.first_name+" "+val.last_name}</td> 
+                                <td>{val.email}</td> 
+                                </tr>
+                            ) }
+                        </tbody>
+                    </table>
+               </div> 
     }
     componentDidUpdate(){
         console.log("ChildComp's componentDidUpdate was called");
