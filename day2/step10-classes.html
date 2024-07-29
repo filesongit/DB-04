@@ -19,7 +19,13 @@
         constructor *
             super()
         */
-        class MyFirstClass{
+        class PrimaryClass{
+            title = "default title";
+            constructor(ntitle){
+                this.title = ntitle;
+            }
+        }
+        class MyFirstClass extends PrimaryClass{
             // public properties
             firstname = "default first name";
             lastname = "default last name";
@@ -28,7 +34,8 @@
             // static property
             static version = 1010;
             // constructor
-            constructor(fname, lname){
+            constructor(fname, lname, htitle){
+                super(htitle);
                 this.firstname = fname;
                 this.lastname = lname;
             }
@@ -43,13 +50,14 @@
                 this.#power = npower;
             }
         };
-        let myclass = new MyFirstClass("Tony","Stark");
+        let myclass = new MyFirstClass("Tony","Stark","I am Ironman");
         console.log( myclass.fullname() );
         console.log( myclass.power ); // getter
         // setter
         myclass.power = 10;
         console.log( myclass.power ); // getter
         console.log( myclass.firstname );
+        console.log( myclass.title );
         console.log( MyFirstClass.version );
     </script>
 </head>

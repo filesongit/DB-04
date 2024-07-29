@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <!--  <script src="script/myscript.js"></script>
+    <script>
+        console.log(adder(5,6));
+    </script> -->
+    <!-- <script type="module">
+        // import { adder } from "./modules/adder.js";
+        import vijay from "./modules/adder.js";
+        console.log(vijay(5,6));
+    </script> -->
+    <script type="module">
+        let hero = {
+            title : "Ironman"
+        };
+        console.log(hero.title);
+
+        // dynamic import 
+        // let mod = () => import("./modules/adder.js");
+        let mod = async () => await import("./modules/adder.js");
+        mod().then(res => {
+            // console.log(res.adder(5,6));
+            // console.log(res.multiplier(5,6));
+            // console.log(res.adder(5,6));
+            console.log(res.default(5,6));
+        });
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
