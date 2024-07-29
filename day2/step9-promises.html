@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        let promisefun1 = () => {
+            return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        if(false){
+                            resolve("Resolve Data")
+                        }else{
+                            reject("Reject Reason")
+                        }
+                    },2000);
+                })
+        };
+        promisefun1()
+        .then((res) => {
+            console.log("Result is", res)
+        })
+        .catch((err) => {
+            console.log("Error is", err)
+        })
+        .finally(() => {
+            console.log("Promise is settled")
+        }); 
+        */
+        async function adder(num1, num2){
+            let total = 0;
+            total = await (num1 + num2 );
+            console.log(total);
+            return total;
+        };
+
+       /*  adder().then().catch().finally() */
+       // console.log(total);
+       /*      
+        adder(5,6)
+       .then(res => console.log(res))
+       .catch(err => console.log(err)); 
+       */
+      adder(5,6);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
