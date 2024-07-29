@@ -44,14 +44,30 @@
         })  */
     </script>
     <script type="text/babel">
-        let elm = <ul>
-                        <li className="box">List Item 1</li>
-                        <li className="box">List Item 2</li>
-                        <li className="box">List Item 3</li>
-                        <li className="box">List Item 4</li>
-                        <li className="box">List Item 5</li>
-                    </ul>
-         ReactDOM.createRoot(document.getElementById("root")).render(elm);
+
+        // React Element
+        /* let elm = <ul>
+            <li className="box">List Item 1</li>
+            <li className="box">List Item 2</li>
+            <li className="box">List Item 3</li>
+            <li className="box">List Item 4</li>
+            <li className="box">List Item 5</li>
+            </ul> 
+        */
+         // React Component
+         // Class 
+        /*  class MyComp extends React.Component{
+            avengers = ["Ironman","Hulk","Thor","Black Panther"]
+            render(){
+                return <ul>{ this.avengers.map((val,idx) => <li className="box" key={idx}>{val}</li> ) }</ul> 
+            }
+         } */
+         // Function
+         let FunComp = () => {
+            let avengers = ["Ironman","Hulk","Thor","Black Panther", "Black Widow"]
+            return <ul>{ avengers.map((val,idx) => <li className="box" key={idx}>{val}</li> ) }</ul> 
+         }
+         ReactDOM.createRoot(document.getElementById("root")).render(<FunComp/>);
     </script>
 </head>
 <body>
