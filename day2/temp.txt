@@ -1,0 +1,36 @@
+import React, { Component } from "react";
+
+class App extends Component{
+    state = {
+        power : 0
+    };
+    ipref = React.createRef();
+    /* 
+    constructor(){
+        super();
+        this.addPower = this.addPower.bind(this);
+    } 
+    */
+    addPower = () => {
+        this.setState({ power : this.state.power + 1 })
+    }
+    render(){
+        return <div>
+                    <h1>Hero's Power is { this.state.power }</h1>
+                    {/* <button onClick={ this.addPower.bind(this) } >Add Power</button>*/}
+                     <br />
+                    <button onClick={ this.addPower } >Add Power</button>
+                    <br />
+                    <button onClick={ this.addPower } >Add Power</button>
+                    <br />
+                    <button onClick={ this.addPower } >Add Power</button>
+                    <br />
+                    <button onClick={ this.addPower } >Add Power</button>
+                    <br />
+                    <input type="range" />
+               </div> 
+    }
+    
+ }
+
+ export default App;
