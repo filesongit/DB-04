@@ -4,13 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .box{
+            background-color: darkblue;
+            color: aliceblue;
+            font-family: sans-serif;
+            list-style-type: none;
+            padding: 10px;
+            font-size: 24px; 
+            margin: 10px;
+            width: 200px;
+        }
+    </style>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script>
+       /*  
         document.addEventListener("DOMContentLoaded", function(){
+            // dom virtual element
             let elm = document.createElement("li");
-                elm.innerText = "List Item";
-                console.log(elm);
-            document.getElementById("root").appendChild(elm)
-        })
+                elm.setAttribute("class", "box");
+                elm.innerText = "List Item from DOM";
+            document.getElementById("root").appendChild(elm);
+        }) 
+       */
+
+        /* document.addEventListener("DOMContentLoaded", function(){
+            // react virtual element
+            // 
+            let elm = React.createElement("li",{"className":"box"}, "List Item from React");
+            let list1 = React.createElement("li",{"className":"box"}, "List Item One");
+            let list2 = React.createElement("li",{"className":"box"}, "List Item Two");
+            let list3 = React.createElement("li",{"className":"box"}, "List Item Three");
+            let list4 = React.createElement("li",{"className":"box"}, "List Item Four");
+            let list5 = React.createElement("li",{"className":"box"}, "List Item Five");
+            let parentelm = React.createElement("ul",null, [list1, list2, list3, list4, list5]); 
+            ReactDOM.createRoot(document.getElementById("root")).render(parentelm);
+        })  */
+    </script>
+    <script type="text/babel">
+        let elm = <ul>
+                        <li className="box">List Item 1</li>
+                        <li className="box">List Item 2</li>
+                        <li className="box">List Item 3</li>
+                        <li className="box">List Item 4</li>
+                        <li className="box">List Item 5</li>
+                    </ul>
+         ReactDOM.createRoot(document.getElementById("root")).render(elm);
     </script>
 </head>
 <body>
