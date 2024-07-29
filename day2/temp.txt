@@ -3,8 +3,8 @@ import { Component } from "react";
 class App extends Component{
     state = {
         userinfo : {
-            firstname : "",
-            lastname : "",
+            firstname : "default first name",
+            lastname : "default last name",
             age : 0
         }
     }
@@ -14,22 +14,28 @@ class App extends Component{
                     <hr />
                     <div className="mb-3">
                         <label htmlFor="ufname" className="form-label">First Name</label>
-                        <input className="form-control" id="ufname"/>
+                        <input onChange={(event) => this.setState({...this.state, userinfo : {...this.state.userinfo,firstname : event.target.value}})} value={this.state.userinfo.firstname} className="form-control" id="ufname"/>
                         <div className="form-text">Enter your First Name</div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="ulname" className="form-label">Last Name</label>
-                        <input className="form-control" id="ulname"/>
+                        <input onChange={(event) => this.setState({...this.state,  userinfo : {...this.state.userinfo,lastname : event.target.value}})} value={this.state.userinfo.lastname} className="form-control" id="ulname"/>
                         <div className="form-text">Enter your Last Name</div>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="uage" className="form-label">Age</label>
-                        <input type="number" className="form-control" id="uage"/>
+                        <input onChange={(event) => this.setState({...this.state,  userinfo : {...this.state.userinfo,age : event.target.value}})} value={this.state.userinfo.age} type="number" className="form-control" id="uage"/>
                         <div className="form-text">Enter your Age</div>
                         <div className="form-text">You are too young to join us</div>
                         <div className="form-text">You are too old to join us</div>
                     </div>
                     <button className="btn btn-primary">Register</button>
+                    <hr />
+                    <ul>
+                        <li>First Name { this.state.userinfo.firstname }</li>
+                        <li>Last Name { this.state.userinfo.lastname }</li>
+                        <li>Age { this.state.userinfo.age }</li>
+                    </ul>
                </div>
     }
 }
