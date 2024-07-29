@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+        properties
+            private *
+                getters *
+                setters *
+            public *
+            static
+        methods
+            private
+            public *
+            static
+        constructor *
+            super()
+        */
+        class MyFirstClass{
+            // public properties
+            firstname = "default first name";
+            lastname = "default last name";
+            // private property
+            #power = 6;
+            // static property
+            static version = 1010;
+            // constructor
+            constructor(fname, lname){
+                this.firstname = fname;
+                this.lastname = lname;
+            }
+            // public method
+            fullname(){
+                return this.firstname+" "+this.lastname;
+            }
+            get power(){
+                return this.#power
+            }
+            set power(npower){
+                this.#power = npower;
+            }
+        };
+        let myclass = new MyFirstClass("Tony","Stark");
+        console.log( myclass.fullname() );
+        console.log( myclass.power ); // getter
+        // setter
+        myclass.power = 10;
+        console.log( myclass.power ); // getter
+        console.log( myclass.firstname );
+        console.log( MyFirstClass.version );
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
