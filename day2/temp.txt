@@ -1,1 +1,68 @@
 https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+app.jsx
+-------
+
+import { Component } from "react";
+import ChildComp from "./components/childcomp";
+
+class App extends Component{
+    state = {
+        show : true
+    }
+    constructor(){
+        super();
+        console.log("App Component's constructor was called")
+    }
+    render(){
+        console.log("App Component's render was called")
+        return <div className="container">
+                    <h2>Class Component Lifecycle</h2>
+                    <label htmlFor="showhide">Show / Hide</label>
+                    <input checked={this.state.show} onChange={() => this.setState({ show : !this.state.show })} type="checkbox" id="showhide" />
+                    <hr />
+                    {this.state.show ? <ChildComp/> : "child component is unmounted"}
+               </div>
+    }
+    componentDidMount(){
+        console.log("App Component's componentDidMount was called")
+    }
+
+}
+
+export default App;
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+childcomp.jsx
+-------------
+
+import { Component } from "react";
+
+class ChildComp extends Component{
+    constructor(){
+        super();
+        console.log("ChildComp's constructor was called")
+    }
+    render(){
+        console.log("ChildComp's render was called")
+        return <div className="container">
+                    <h3>Child Component</h3>
+               </div>
+    }
+    componentDidUpdate(){
+        console.log("ChildComp's componentDidUpdate was called");
+    }
+    componentDidMount(){
+        console.log("ChildComp's componentDidMount was called")
+    }
+    componentWillUnmount(){
+        console.log("ChildComp's componentWillUnmount was called")
+    }
+}
+
+export default ChildComp;
