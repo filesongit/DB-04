@@ -2,40 +2,54 @@ import {legacy_createStore} from "redux";
 let createStore = legacy_createStore;
 // action type
 const ADD_HERO = "ADD_HERO";
-
+const REMOVE_HERO = "REMOVE_HERO";
+const SET_HERO = "SET_HERO";
 // action creators
 let addHero = () => {
     return {
         type : ADD_HERO
     }
 }
-
+let removeHero = () => {
+    return {
+        type : REMOVE_HERO
+    }
+}
+let setHero = (count) => {
+    return {
+        type : SET_HERO,
+        payload : count
+    }
+}
 // default / intial state
 const initalState = {
     numberOfHeroes : 0
 }
-
 // reducer pure function
 let reducer = (state = initalState, action) => {
     switch(action.type){
         case ADD_HERO : return { numberOfHeroes : state.numberOfHeroes + 1 }
+        case REMOVE_HERO : return { numberOfHeroes : state.numberOfHeroes - 1 }
+        case SET_HERO : return { numberOfHeroes :  action.payload }
         default : return state
     }
 };
-
 let store = createStore(reducer);
-
 // intial store
 console.log("Initial Value ",store.getState());
 // subscribe
 let unsubscribe = store.subscribe(function(){
     console.log("Subscribe to watch changes in the store ",store.getState());
 });
-
 store.dispatch(addHero());// 1
 store.dispatch(addHero());// 2
 store.dispatch(addHero());// 3
+store.dispatch(removeHero());// 2
+store.dispatch(addHero());// 3
+store.dispatch(removeHero());// 2
+store.dispatch(addHero());// 3
 store.dispatch(addHero());// 4
+store.dispatch(setHero(10));// 10
 unsubscribe();
 store.dispatch(addHero());// 5
 store.dispatch(addHero());// 6
