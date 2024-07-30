@@ -76,14 +76,35 @@ import { useState } from "react";
 function StateComp() {
     // console.log(useState())
     // let [state, setState] = useState(0);
-    let [power, setPower] = useState(0);
+    let [power, setPower] = useState(0);// state as number
+    let [show, setShow] = useState(true); // state as boolean
+    let [username, setUserName] = useState({ firstname : "Bruce", lastname : "Wayne" }); // state as object
+    let [avengers, setAvengers] = useState(["Ironman"]); // state as array
 
     return <div>
              <h3>State</h3>
              <h4>Power is { power }</h4>
-             <button onClick={() => setPower(power+1)}>Increase Power </button>
-             <button onClick={() => setPower(5)}>Increase Power to 5</button>
-             <button onClick={() => setPower(power-1)}>Decrease Power </button>
+             <input type="checkbox" onChange={() => setShow(!show)} />
+             {
+                show && <div>
+                            <button onClick={() => setPower(power+1)}>Increase Power </button>
+                            <button onClick={() => setPower(5)}>Increase Power to 5</button>
+                            <button onClick={() => setPower(power-1)}>Decrease Power </button>
+                        </div>
+             }
+             <p>Full Name : { username.firstname+" "+username.lastname }</p>
+             <label htmlFor="fname">First Name</label>
+             <input id="fname" onChange={(evt) => setUserName({...username, firstname : evt.target.value })} value={username.firstname} type="text" />
+             <br />
+             <label htmlFor="lname">Last Name</label>
+             <input id="lname" onChange={(evt) => setUserName({...username, lastname : evt.target.value })} value={username.lastname} type="text" />
+             <br />
+             <br />
+             <label htmlFor="avenger">Add Avenger</label>
+             <input id="avenger" type="text" onBlur={(event) => setAvengers([...avengers, event.target.value]) } />
+             <ol>
+                {avengers.map((val, idx) => <li key={idx}>{val}</li>)}
+             </ol>
            </div>
   }
   
