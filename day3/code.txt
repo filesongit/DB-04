@@ -13,10 +13,57 @@ ReactDOM
   app.jsx
   -------------------
 
-  function App() {
+/* 
+Class Component known as smart or stateful components
+-----------------------------------------------------
+forceUpdate
+state management methods
+lifecycle events
+HOC
+Error Boundries
+
+Function Component known as dumb or stateless components
+-----------------------------------------------------
+fast 
+hooks
+Hot reloading
+easy on the developer
+*/
+
+import ChildComp from "./components/childcomp"
+
+function App() {
   return <div>
-           <h2>React Hooks</h2>
+           <h2>React Function Components</h2>
+           <ChildComp title="DB Training for Batch 04" version="1010" power="7">
+              <button>Click Me</button>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi laudantium ipsum voluptas alias atque ex asperiores, nisi dicta eos, dignissimos cum veniam voluptatem corporis unde, quod eveniet repellendus aliquam a?
+              </p>
+           </ChildComp>
          </div>
 }
 
 export default App
+
+  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+childcomp.jsx
+---------------
+
+function ChildComp({title, version, power, children}) {
+    return <div>
+             <h3>Props</h3>
+             <ul>
+                <li>Title : {title}</li>
+                <li>Version : {version}</li>
+                <li>Power : {power}</li>
+             </ul>
+             <hr />
+             { children }
+           </div>
+  }
+  
+  export default ChildComp
+  
+
