@@ -65,5 +65,27 @@ function ChildComp({title, version, power, children}) {
   }
   
   export default ChildComp
-  
 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+statecomp.jsx
+-----------------
+
+import { useState } from "react";
+
+function StateComp() {
+    // console.log(useState())
+    // let [state, setState] = useState(0);
+    let [power, setPower] = useState(0);
+
+    return <div>
+             <h3>State</h3>
+             <h4>Power is { power }</h4>
+             <button onClick={() => setPower(power+1)}>Increase Power </button>
+             <button onClick={() => setPower(5)}>Increase Power to 5</button>
+             <button onClick={() => setPower(power-1)}>Decrease Power </button>
+           </div>
+  }
+  
+  export default StateComp
+  
