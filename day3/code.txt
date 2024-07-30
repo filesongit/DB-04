@@ -109,4 +109,39 @@ function StateComp() {
   }
   
   export default StateComp
-  
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+lifecyclecomp.jsx
+--------------------
+
+
+import { useEffect, useState } from "react"
+
+function LifeCycleComp() {
+    let [version, setVersion] = useState(0);
+    // mount
+    useEffect(()=>{
+        console.log("LifeCycleComp was mounted");
+    },[])
+
+    // update
+    useEffect(()=>{
+        console.log("LifeCycleComp is updated its version to ", version);
+    },[version])
+    
+    // unmount
+    useEffect(()=>{
+        return () => console.log("LifeCycleComp is unmounted");
+    },[])
+
+    return <div>
+             <h3>LifeCycle Hooks</h3>
+             <button onClick={() => setVersion(Math.round(Math.random() * 1000 ))}>Change Version</button>
+             <h4>Version { version }</h4>
+           </div>
+}
+export default LifeCycleComp  
+
+
