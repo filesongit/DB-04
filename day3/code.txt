@@ -1,6 +1,5 @@
 main.jsx
-  -------------
-  
+-------------
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 
@@ -8,140 +7,85 @@ ReactDOM
 .createRoot(document.getElementById('root'))
 .render(<App />)
 
-  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-  app.jsx
-  -------------------
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-/* 
-Class Component known as smart or stateful components
------------------------------------------------------
-forceUpdate
-state management methods
-lifecycle events
-HOC
-Error Boundries
-
-Function Component known as dumb or stateless components
------------------------------------------------------
-fast 
-hooks
-Hot reloading
-easy on the developer
-*/
-
-import ChildComp from "./components/childcomp"
+app.js
+-------------------
+import GrandParentComp from "./components/grandparentcomp"
 
 function App() {
-  return <div>
-           <h2>React Function Components</h2>
-           <ChildComp title="DB Training for Batch 04" version="1010" power="7">
-              <button>Click Me</button>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi laudantium ipsum voluptas alias atque ex asperiores, nisi dicta eos, dignissimos cum veniam voluptatem corporis unde, quod eveniet repellendus aliquam a?
-              </p>
-           </ChildComp>
+  return <div className="container">
+           <h2>React State Management Example</h2>
+           <GrandParentComp/>
          </div>
 }
 
 export default App
 
+
   XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-childcomp.jsx
+grandparentcomp.jsx
 ---------------
 
-function ChildComp({title, version, power, children}) {
-    return <div>
-             <h3>Props</h3>
-             <ul>
-                <li>Title : {title}</li>
-                <li>Version : {version}</li>
-                <li>Power : {power}</li>
-             </ul>
-             <hr />
-             { children }
+import ParentComp from "./parentcomp"
+
+function GrandParentComp() {
+    return <div className="card">
+                <div className="card-body">
+                        <h3 className="card-title">Grand Parent Component</h3>
+                        <div>
+                            Grand Parent Component content comes here
+                        </div>
+                        <ParentComp/>
+                </div>
            </div>
   }
   
-  export default ChildComp
+  export default GrandParentComp
+  
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-statecomp.jsx
+parentcomp.jsx
 -----------------
 
-import { useState } from "react";
+import ChildComp from "./childcomp"
 
-function StateComp() {
-    // console.log(useState())
-    // let [state, setState] = useState(0);
-    let [power, setPower] = useState(0);// state as number
-    let [show, setShow] = useState(true); // state as boolean
-    let [username, setUserName] = useState({ firstname : "Bruce", lastname : "Wayne" }); // state as object
-    let [avengers, setAvengers] = useState(["Ironman"]); // state as array
-
-    return <div>
-             <h3>State</h3>
-             <h4>Power is { power }</h4>
-             <input type="checkbox" onChange={() => setShow(!show)} />
-             {
-                show && <div>
-                            <button onClick={() => setPower(power+1)}>Increase Power </button>
-                            <button onClick={() => setPower(5)}>Increase Power to 5</button>
-                            <button onClick={() => setPower(power-1)}>Decrease Power </button>
-                        </div>
-             }
-             <p>Full Name : { username.firstname+" "+username.lastname }</p>
-             <label htmlFor="fname">First Name</label>
-             <input id="fname" onChange={(evt) => setUserName({...username, firstname : evt.target.value })} value={username.firstname} type="text" />
-             <br />
-             <label htmlFor="lname">Last Name</label>
-             <input id="lname" onChange={(evt) => setUserName({...username, lastname : evt.target.value })} value={username.lastname} type="text" />
-             <br />
-             <br />
-             <label htmlFor="avenger">Add Avenger</label>
-             <input id="avenger" type="text" onBlur={(event) => setAvengers([...avengers, event.target.value]) } />
-             <ol>
-                {avengers.map((val, idx) => <li key={idx}>{val}</li>)}
-             </ol>
+function ParentComp() {
+    return <div className="card">
+                <div className="card-body">
+                 <h3 className="card-title">Parent Component</h3>
+                    <div>
+                        Parent Component content comes here
+                    </div>
+                    <ChildComp/>
+                </div>
            </div>
   }
   
-  export default StateComp
+  export default ParentComp
+  
 
 
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-lifecyclecomp.jsx
+childcomp.jsx
 --------------------
 
-
-import { useEffect, useState } from "react"
-
-function LifeCycleComp() {
-    let [version, setVersion] = useState(0);
-    // mount
-    useEffect(()=>{
-        console.log("LifeCycleComp was mounted");
-    },[])
-
-    // update
-    useEffect(()=>{
-        console.log("LifeCycleComp is updated its version to ", version);
-    },[version])
-    
-    // unmount
-    useEffect(()=>{
-        return () => console.log("LifeCycleComp is unmounted");
-    },[])
-
-    return <div>
-             <h3>LifeCycle Hooks</h3>
-             <button onClick={() => setVersion(Math.round(Math.random() * 1000 ))}>Change Version</button>
-             <h4>Version { version }</h4>
+function ChildComp() {
+    return <div className="card">
+            <div className="card-body">
+                    <h3 className="card-title">Child Component</h3>
+                    <div>
+                        Child Component content comes here
+                    </div>
+            </div>
            </div>
-}
-export default LifeCycleComp  
+  }
+  
+  export default ChildComp
+  
 
 
