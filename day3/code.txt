@@ -1,91 +1,41 @@
-main.jsx
--------------
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import {legacy_createStore} from "redux";
+let createStore = legacy_createStore;
+// action type
+const ADD_HERO = "ADD_HERO";
 
-ReactDOM
-.createRoot(document.getElementById('root'))
-.render(<App />)
-
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-app.js
--------------------
-import GrandParentComp from "./components/grandparentcomp"
-
-function App() {
-  return <div className="container">
-           <h2>React State Management Example</h2>
-           <GrandParentComp/>
-         </div>
+// action creators
+let addHero = () => {
+    return {
+        type : ADD_HERO
+    }
 }
 
-export default App
+// default / intial state
+const initalState = {
+    numberOfHeroes : 0
+}
 
+// reducer pure function
+let reducer = (state = initalState, action) => {
+    switch(action.type){
+        case ADD_HERO : return { numberOfHeroes : state.numberOfHeroes + 1 }
+        default : return state
+    }
+};
 
-  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+let store = createStore(reducer);
 
-grandparentcomp.jsx
----------------
+// intial store
+console.log("Initial Value ",store.getState());
+// subscribe
+let unsubscribe = store.subscribe(function(){
+    console.log("Subscribe to watch changes in the store ",store.getState());
+});
 
-import ParentComp from "./parentcomp"
-
-function GrandParentComp() {
-    return <div className="card">
-                <div className="card-body">
-                        <h3 className="card-title">Grand Parent Component</h3>
-                        <div>
-                            Grand Parent Component content comes here
-                        </div>
-                        <ParentComp/>
-                </div>
-           </div>
-  }
-  
-  export default GrandParentComp
-  
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-parentcomp.jsx
------------------
-
-import ChildComp from "./childcomp"
-
-function ParentComp() {
-    return <div className="card">
-                <div className="card-body">
-                 <h3 className="card-title">Parent Component</h3>
-                    <div>
-                        Parent Component content comes here
-                    </div>
-                    <ChildComp/>
-                </div>
-           </div>
-  }
-  
-  export default ParentComp
-  
-
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-childcomp.jsx
---------------------
-
-function ChildComp() {
-    return <div className="card">
-            <div className="card-body">
-                    <h3 className="card-title">Child Component</h3>
-                    <div>
-                        Child Component content comes here
-                    </div>
-            </div>
-           </div>
-  }
-  
-  export default ChildComp
-  
-
-
+store.dispatch(addHero());// 1
+store.dispatch(addHero());// 2
+store.dispatch(addHero());// 3
+store.dispatch(addHero());// 4
+unsubscribe();
+store.dispatch(addHero());// 5
+store.dispatch(addHero());// 6
